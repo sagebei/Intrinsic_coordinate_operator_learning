@@ -134,7 +134,7 @@ if __name__ == "__main__":
         # print(test_dataset.LAT.shape, test_dataset.LAT.min(), test_dataset.LAT.max(), flush=True)
 
         model = ViT(**param).to(device)
-        model.load_state_dict(torch.load(f"./models/{model.name}_{fold}.pth"))
+        model.load_state_dict(torch.load(f"./weights/{model.name}_{fold}.pth"))
     
         model.eval()
         with torch.no_grad():

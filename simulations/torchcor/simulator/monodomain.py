@@ -11,7 +11,6 @@ import time
 from torchcor.core import *
 from pathlib import Path
 import pandas as pd
-from torchcor.signalanalysis.signalanalysis.ecg_QS import Ecg
 from torchcor.tools.igbwriter import IGBWriter
 
 
@@ -286,32 +285,7 @@ class Monodomain:
         print(phi_e_all.min().item(), phi_e_all.max().item())
 
 
-    def simulated_ECG(self):
-        im = IGBWriter({
-            "fname": os.path.join(self.result_path, "phie.igb"),
-            "Tend": self.T + 1,
-            "nt": self.nt + 1,
-            "nx": self.n_nodes,
-            "ny": 1,
-            "nz": 1
-        })
-
-        path = os.path.join(self.result_path, "Phi_e.pt")
-        phie = torch.load(path).numpy()
-        for p in phie:
-           im.imshow(p)
-        
-        ECGs = Ecg(os.path.join(self.result_path, 'phie.igb'), dt=1)
-
-        lp, hp = 100, 0.01
-        ECGs.filter = 'butterworth'
-        ECGs.apply_filter(freq_filter=lp, order=2, sample_freq=1000, filter_type='low')
-        ECGs.apply_filter(freq_filter=hp, order=2, sample_freq=1000, filter_type='high')
-        
-        ECGspd = pd.DataFrame(ECGs.data)
-        print(ECGspd.columns)
-        ECGspd.to_csv(self.result_path / 'simulated_filtered.dat', sep=' ', header=False, mode='w')
-        
+   
 
     def pt_to_igb(self, filename: str = "vm.igb"):
         ''' This function converts the output to an igb file format

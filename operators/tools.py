@@ -17,6 +17,7 @@ def plot_lat(
     max_regions=4,
 ):
     """
+    High-quality Nature-style LAT map with region highlights and edge-aware value labels.
 
     Parameters
     ----------
@@ -403,3 +404,26 @@ if __name__ == "__main__":
     print(fibres.shape)
     print(fibres)
 
+
+
+    
+
+def pacing_coord_to_grid(pacing_coord, n_uac_points):
+    r = 1  # radius in pixels
+
+    H = W = n_uac_points
+    grid_binary = np.zeros((H, W), dtype=np.float32)
+    for p in pacing_coord:
+        u, v = p
+
+        j = int(np.round(u * (W - 1)))
+        i = int(np.round(v * (H - 1)))
+
+        for di in range(-r, r+1):
+            for dj in range(-r, r+1):
+                if di**2 + dj**2 <= r**2:  # within circle
+                    ii = i + di
+                    jj = j + dj
+                    if 0 <= ii < H and 0 <= jj < W:
+                        grid_binary[ii, jj] = 1
+    return grid_binary
