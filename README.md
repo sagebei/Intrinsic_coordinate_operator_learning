@@ -1,1 +1,2 @@
-# unified_framework_operator_learning
+# The official implementation for "A unified framework for geometry-independent operator learning in cardiac electrophysiology simulations"
+
