@@ -157,7 +157,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="root",
                                     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("-root", type=str, default="/data/Bei/Caroline")
+    parser.add_argument("-root", type=str, default="/data/Bei/")
     parser.add_argument("-i", type=int, default=1)
     parser.add_argument("-regime", type=int, default=1)
     parser.add_argument("-device_id", type=int, default=0)
