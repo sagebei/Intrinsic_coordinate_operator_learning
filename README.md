@@ -1,2 +1,2 @@
-# "A unified framework for geometry-independent operator learning in cardiac electrophysiology simulations"
+# "Intrinsic coordinate operator learning for patient-specific activation map prediction"
 
